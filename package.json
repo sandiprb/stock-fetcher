@@ -1,0 +1,11 @@
+{
+  "name": "stock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Sandip Baradiya",
+  "license": "ISC",
+  "devDependencies": {
+    "curlrequest": "^0.5.7"
+  }
+}
