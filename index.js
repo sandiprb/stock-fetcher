@@ -3,19 +3,8 @@
 var curl = require('curlrequest');
 
 var URL = 'http://finance.google.com/finance/info?&q=';
-
-var stocks = {
-	nse : ["HDFC","NSE","SBIN"],
-	nasdaq : ["AAPL", "GOOG"]
-};
-
-var stocks_to_query  = "" ;
-
-for(let stock in stocks){
-	if(stocks.hasOwnProperty(stock)){
-		stocks_to_query += stocks[stock].join(',') + ":" +stock + "," ;
-	}
-}
+var stocks = ["HDFC","SBIN"]
+var stocks_to_query  = stocks.join(',');
 
 console.log(stocks_to_query);
 
