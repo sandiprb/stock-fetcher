@@ -1,30 +1,24 @@
 "use strict";
 
-var curl = require('curlrequest');
+var request = require('request');
 
 var URL = 'http://finance.google.com/finance/info?&q=';
 var stocks = ["HDFC","SBIN"]
+
 var stocks_to_query  = stocks.join(',');
 
 console.log(stocks_to_query);
 
-var options ={
-	url: URL + stocks_to_query,
-	include: true
-};
 
-function get_prices(){	
-	curl.request(options, function (err, parts) {
-		try{
-			var parts = parts.split('\n\r');
-			var result = JSON.parse(parts[1].replace('//', ''));
-			console.log(result);
-		}catch(e){
-			console.log(e);
-			console.log("data "+ parts);
-			console.log("Couldn't retrive data!!!!");
+function get_prices(){
+	request(URL + stocks_to_query, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			body = JSON.parse(body.replace(/\/+/g, ''))
+			console.log(body)
+		}else{
+			throw error;
 		}
-	});
+	})
 }
 
-setInterval(get_prices, 5000);
+setInterval(get_prices, 1000);
